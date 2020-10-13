@@ -10,6 +10,11 @@ const noteSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 3
+    },
+    creator: {
+        type: mongoose.ObjectId,
+        ref: 'User',
+        required: true
     }
 }, { timestamps: true })
 
