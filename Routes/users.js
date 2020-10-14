@@ -38,6 +38,18 @@ router.post('/logout', auth, async (req, res) => {
     }
 })
 
+router.delete('/delete', auth, async (req, res) => {
+    try {
+        await req.user.remove();
+        res.status(200).json({
+            message: "User Deleted",
+            user: req.user
+        })
+    } catch (e) {
+        res.status(500).send(e)
+    }
+})
+
 router.post('/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = []

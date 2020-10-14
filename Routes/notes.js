@@ -24,4 +24,16 @@ router.post('/create', auth, async (req, res) => {
     }
 })
 
+router.delete('/delete/:id', auth, async (req, res) => {
+    try {
+        const note = await Note.findByIdAndDelete(req.params.id)
+        if (!note) {
+            throw new Error()
+        }
+        res.status(200).send(note)
+    } catch (e) {
+        res.status(500).json({ error: "Something is wrong!" })
+    }
+})
+
 module.exports = router;
