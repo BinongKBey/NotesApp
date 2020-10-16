@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 
 const notesRoute = require('./Routes/notes');
 const userRoute = require('./Routes/users');
+const cors = require('cors');
 
-require('dotenv').config()
+require('dotenv').config();
 
 const port = process.env.PORT || 7000;
 
@@ -16,11 +17,11 @@ mongoose.connect(process.env.DB, {
 }, () => {
     console.log("DB runninng")
 })
-
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 
 app.use('/user', userRoute);
-app.use('/notes', notesRoute)
+app.use('/notes', notesRoute);
 
 app.listen(port, () => {
     console.log("Server running in port ", port)
