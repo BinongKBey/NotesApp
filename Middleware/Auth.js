@@ -15,7 +15,7 @@ const auth = async (req, res, next) => {
         next()
     }
     catch (e) {
-        res.status(401).json({ error: "Please Login or Signup first" })
+        res.status(401).send()
     }
 }
 
